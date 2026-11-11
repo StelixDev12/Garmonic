@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Unpack sources
         run: |
-          if [ -f grit-src.zip ]; then rm -rf src; unzip -o grit-src.zip; fi  
+          if [ -f grit-src.zip ]; then unzip -o grit-src.zip; fi
           ls -R src | head -40
           test -f src/main/resources/fabric.mod.json || { echo "::error::Нет src/main/resources/fabric.mod.json"; exit 1; }
       - uses: actions/setup-java@v4
