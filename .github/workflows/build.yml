@@ -6,24 +6,51 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Unpack sources
         run: |
-          if [ -f grit-src.zip ]; then unzip -o grit-src.zip; fi
-          ls -R src | head -40
-          test -f src/main/resources/fabric.mod.json || { echo "::error::Нет src/main/resources/fabric.mod.json"; exit 1; }
+          echo "Файлы в репозитории:"
+          find . -path ./.git -prune -o -type f -print | head -n 100
+          found=""
+          while IFS= read -r z; do
+            if unzip -l "$z" | grep -q "src/main/resources/fabric.mod.json"; then
+              found="$z"
+            fi
+          done < <(find . -path ./.git -prune -o -type f -iname '*.zip' -print)
+          if [ -n "$found" ]; then
+            echo "Распаковываю архив: $found"
+            rm -rf /tmp/unz && mkdir -p /tmp/unz
+            unzip -q -o "$found" -d /tmp/unz
+            modjson=$(find /tmp/unz -path '*src/main/resources/fabric.mod.json' | head -n 1)
+            dir=$(dirname "$(dirname "$(dirname "$(dirname "$modjson")")")")
+            rm -rf src
+            cp -r "$dir/src" .
+            for f in build.gradle settings.gradle gradle.properties; do
+              if [ -f "$dir/$f" ]; then cp "$dir/$f" .; fi
+            done
+          else
+            echo "Архив с исходниками не найден, собираю то, что лежит в репозитории"
+          fi
+          test -f src/main/resources/fabric.mod.json || { echo "::error::Не найдены исходники мода: загрузите grit-src.zip в репозиторий"; exit 1; }
+          test -f build.gradle || { echo "::error::Нет build.gradle"; exit 1; }
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
+
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.8"
+
       - name: Build
         run: gradle build --no-daemon
+
       - name: Check jar
         run: |
           unzip -l build/libs/grit-1.0.0.jar
           unzip -l build/libs/grit-1.0.0.jar | grep -q fabric.mod.json || { echo "::error::В jar нет fabric.mod.json"; exit 1; }
+
       - uses: actions/upload-artifact@v4
         with:
           name: grit-mod
