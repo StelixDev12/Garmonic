@@ -1,0 +1,15 @@
+{
+  "item.grit.splint": "Splint",
+  "item.grit.splint.tooltip": "A fracture heals in 20 seconds",
+  "effect.grit.fracture": "Fracture",
+  "message.grit.fracture": "Crack… Your leg is broken",
+  "message.grit.dread.1": "The darkness whispers…",
+  "message.grit.dread.2": "Your heart pounds louder",
+  "message.grit.dread.3": "Darkness creeps into your eyes",
+  "message.grit.dread.4": "Panic. You need light. Now.",
+  "message.grit.dread.relief": "Light. You can breathe again",
+  "message.grit.burden.1": "Your load is heavy",
+  "message.grit.burden.2": "You can barely drag your load",
+  "message.grit.burden.lighter": "Your load feels lighter",
+  "message.grit.full_moon": "A full moon rises. Monsters are stronger tonight"
+}

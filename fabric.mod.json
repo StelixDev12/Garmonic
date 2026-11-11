@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "grit",
+  "version": "${version}",
+  "name": "Grit: Harsh Survival",
+  "description": "Суровое выживание в духе ванили: переломы, страх темноты, тяжёлая ноша и полнолуние. Без новых шкал HUD и без миксинов. Совместим с Tough As Nails, Serene Seasons и Farmer's Delight.",
+  "authors": [
+    "Grit"
+  ],
+  "license": "MIT",
+  "icon": "assets/grit/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.grit.Grit"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}

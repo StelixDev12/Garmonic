@@ -1,0 +1,15 @@
+{
+  "item.grit.splint": "Шина",
+  "item.grit.splint.tooltip": "Перелом заживает за 20 секунд",
+  "effect.grit.fracture": "Перелом",
+  "message.grit.fracture": "Хруст… Кажется, нога сломана",
+  "message.grit.dread.1": "Темнота шепчет…",
+  "message.grit.dread.2": "Сердце колотится всё громче",
+  "message.grit.dread.3": "Тьма сгущается перед глазами",
+  "message.grit.dread.4": "Паника. Нужен свет. Сейчас же.",
+  "message.grit.dread.relief": "Свет. Можно выдохнуть",
+  "message.grit.burden.1": "Ноша тяжела",
+  "message.grit.burden.2": "Вы едва тащите свою ношу",
+  "message.grit.burden.lighter": "Ноша стала легче",
+  "message.grit.full_moon": "Взошла полная луна. Твари этой ночью сильнее"
+}
